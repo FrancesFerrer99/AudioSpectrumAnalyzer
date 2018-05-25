@@ -12,6 +12,7 @@ using Un4seen.Bass;
 using Un4seen.Bass.Misc;
 using System.Runtime;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace PP_m18
 {
@@ -54,6 +55,9 @@ namespace PP_m18
             }
         }
 
+        private RECORDPROC myRecProc;
+        private int recHandle;
+
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             // svuoto sempre lo stream prima di crearne uno nuovo
@@ -66,15 +70,26 @@ namespace PP_m18
                 fileStream = File.OpenRead(fileName);
                 // creo un handle per lo streaming dal file
                 //streamHandle = Bass.BASS_StreamCreateFileUser(BASSStreamSystem.STREAMFILE_NOBUFFER, BASSFlag.BASS_DEFAULT | BASSFlag.BASS_MUSIC_PRESCAN, soundStream, IntPtr.Zero);
-                streamHandle = Bass.BASS_StreamCreateFile(fileName,0,fileStream.Length, BASSFlag.BASS_DEFAULT);
+                streamHandle = Bass.BASS_StreamCreateFile(fileName, 0, fileStream.Length, BASSFlag.BASS_DEFAULT);
 
-                waveForm = new WaveForm(fileName, new WAVEFORMPROC(WaveChunkLoad), null);
+                //waveForm = new WaveForm(fileName, new WAVEFORMPROC(WaveChunkLoad), null);
+                waveForm = new WaveForm("prova");
                 waveForm.FrameResolution = 0.01f;
-                waveForm.RenderStartRecording(streamHandle, 5, 5);
+                //waveForm.RenderStart(true, BASSFlag.BASS_DEFAULT);
+                waveForm.RenderStart(streamHandle, true, false);
                 waveForm.CallbackFrequency = 5;
+
+                //waveForm.RenderStartRecording(streamHandle, 5, 5);
+                //myRecProc = new RECORDPROC(MyRecoring);
+                //recHandle = Bass.BASS_RecordStart(44100, 2, BASSFlag.BASS_RECORD_PAUSE, myRecProc, );
+
 
                 if (streamHandle != 0 && Bass.BASS_ChannelPlay(streamHandle, false))
                 {
+
+                    Thread t = new Thread(updateFrames);
+                    t.Start();
+
                     buttonPause.Enabled = true;
                     buttonStop.Enabled = true;
                     buttonPlay.Enabled = false;
@@ -91,21 +106,57 @@ namespace PP_m18
             }
         }
 
-        int curFrame = -1;
         private void WaveChunkLoad(int framesDone, int framesTotal, TimeSpan elapsedTime, bool finished)
         {
             //throw new NotImplementedException();
             //MessageBox.Show(framesDone + Environment.NewLine + elapsedTime);
             //pictureBoxWave.BackgroundImage = waveForm.CreateBitmap(pictureBoxWave.Width, pictureBoxWave.Height, curFrame, framesTotal, true);
-            curFrame = framesDone;
-            DrawWave();
+            //Invoke(new myDelegate(updateFrames));
         }
-        
 
+        private int curFrame;
+        private int zoom = 100; // = 5sec., since our resolution is 0.01sec.
+        private int zoomEnd;
+        private int zoomStart;
         private void DrawWave()
         {
-            pictureBoxWave.BackgroundImage = waveForm.CreateBitmap(pictureBoxWave.Width, pictureBoxWave.Height, -1, -1, true);
+            //time -> frame ([FrameResolution] frame : 1 secondo)
+            //frame -> picture box
+            //frame -> pixel
+            //framemax = ratioconversione * maxpixel
+            //rconversione = frame / pixel (i frame in un pixel)
+
+            //int curFrame = (int)(Math.Floor(Bass.BASS_ChannelBytes2Seconds(streamHandle, Bass.BASS_ChannelGetPosition(streamHandle, BASSMode.BASS_POS_BYTES))) / waveForm.FrameResolution);
+
+            //int zoom  = 100; // = 5sec., since our resolution is 0.01sec.
+            //int zoomEnd;
+            //int zoomStart;
+            //WaveWriter ww = new WaveWriter("wave", );
+
+            pictureBoxWave.BackgroundImage = waveForm.CreateBitmap(200, 200, zoomStart, zoomEnd, true);
         }
+
+        public delegate void myDelegate();
+        private void updateFrames()
+        {
+            MessageBox.Show("Ci sono");
+            int endFrame = (int)(Math.Floor(Bass.BASS_ChannelBytes2Seconds(streamHandle, Bass.BASS_ChannelGetLength(streamHandle)) / waveForm.FrameResolution));
+
+            while (Bass.BASS_ChannelGetPosition(streamHandle, BASSMode.BASS_POS_BYTES) < Bass.BASS_ChannelGetLength(streamHandle)
+                && curFrame <= endFrame)
+            {
+                MessageBox
+                curFrame = (int)(Math.Floor(Bass.BASS_ChannelBytes2Seconds(streamHandle, Bass.BASS_ChannelGetPosition(streamHandle, BASSMode.BASS_POS_BYTES))) / waveForm.FrameResolution);
+                if (curFrame > zoom) zoomEnd = curFrame;
+                else zoomEnd = zoom;
+                zoomStart = zoomEnd - zoom;
+                DrawWave();
+                Thread.Sleep(500);
+            }
+
+            MessageBox.Show("Luke Shaw");
+        }
+
 
         private void buttonPause_Click(object sender, EventArgs e)
         {
@@ -136,7 +187,6 @@ namespace PP_m18
                 buttonOpen.Enabled = true;
                 buttonPause.Enabled = false;
                 buttonStop.Enabled = false;
-                
             }
             else
             {
