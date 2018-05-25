@@ -145,7 +145,7 @@ namespace PP_m18
             while (Bass.BASS_ChannelGetPosition(streamHandle, BASSMode.BASS_POS_BYTES) < Bass.BASS_ChannelGetLength(streamHandle)
                 && curFrame <= endFrame)
             {
-                MessageBox
+                //MessageBox
                 curFrame = (int)(Math.Floor(Bass.BASS_ChannelBytes2Seconds(streamHandle, Bass.BASS_ChannelGetPosition(streamHandle, BASSMode.BASS_POS_BYTES))) / waveForm.FrameResolution);
                 if (curFrame > zoom) zoomEnd = curFrame;
                 else zoomEnd = zoom;
