@@ -31,7 +31,6 @@
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.buttonPause = new System.Windows.Forms.Button();
-            this.openAudioFile = new System.Windows.Forms.OpenFileDialog();
             this.buttonStop = new System.Windows.Forms.Button();
             this.pictureBoxWave = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWave)).BeginInit();
@@ -68,11 +67,6 @@
             this.buttonPause.Text = "Pause";
             this.buttonPause.UseVisualStyleBackColor = true;
             this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
-            // 
-            // openAudioFile
-            // 
-            this.openAudioFile.FileName = "openAudioFile";
-            this.openAudioFile.Filter = "MP3 audio file (*.mp3)|*.mp3|Lossless audio file (*.wav)|*.wav";
             // 
             // buttonStop
             // 
@@ -116,7 +110,6 @@
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Button buttonPause;
-        private System.Windows.Forms.OpenFileDialog openAudioFile;
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.PictureBox pictureBoxWave;
     }
