@@ -1,0 +1,13 @@
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\PP_m18.exe.config
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\PP_m18.exe
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\PP_m18.pdb
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\Bass.Net.dll
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\Bass.Net.xml
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.csprojResolveAssemblyReference.cache
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.PlayFileForm.resources
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.Properties.Resources.resources
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.csproj.GenerateResource.cache
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.csproj.CoreCompileInputs.cache
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.csproj.CopyComplete
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.exe
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.pdb
