@@ -83,7 +83,7 @@
             // 
             this.pictureBoxWave.Location = new System.Drawing.Point(13, 75);
             this.pictureBoxWave.Name = "pictureBoxWave";
-            this.pictureBoxWave.Size = new System.Drawing.Size(877, 325);
+            this.pictureBoxWave.Size = new System.Drawing.Size(307, 325);
             this.pictureBoxWave.TabIndex = 4;
             this.pictureBoxWave.TabStop = false;
             // 
@@ -91,7 +91,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 412);
+            this.ClientSize = new System.Drawing.Size(336, 412);
             this.Controls.Add(this.pictureBoxWave);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonPause);

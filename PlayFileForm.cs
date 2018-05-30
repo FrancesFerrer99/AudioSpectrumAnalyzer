@@ -20,7 +20,7 @@ namespace PP_m18
     {
         MusicFileManager MFM = null;
         Player player = null;
-        private WaveForm waveForm;
+        private WaveForm waveForm = null;
         WaveformDrawer wfdrawer = null;
 
         public PlayFileForm()
@@ -43,15 +43,14 @@ namespace PP_m18
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
-            player = null;
-            waveForm = null;
             wfdrawer = null;
             try
             {
-                player = new Player(MFM.fileName, MFM.fileStream.Length, MFM.fileStream);
-
+                if(player == null)
+                    player = new Player(MFM.fileName, MFM.fileStream.Length, MFM.fileStream);
                 //waveForm = new WaveForm(fileName, new WAVEFORMPROC(WaveChunkLoad), null);
-                waveForm = new WaveForm("prova");
+                if(waveForm == null)
+                    waveForm = new WaveForm();
                 waveForm.FrameResolution = 0.01f;
                 //waveForm.RenderStart(true, BASSFlag.BASS_DEFAULT);
                 waveForm.RenderStart(player.streamHandle, true, false);

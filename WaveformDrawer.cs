@@ -18,13 +18,16 @@ namespace PP_m18
         private int myStreamHandle;
         private WaveForm myWaveForm;
         private PictureBox myPictureBox;
+        private int framesPictureBox;
 
         public WaveformDrawer(WaveForm wf, int sh, PictureBox pb)
         {
             myWaveForm = wf;
             myStreamHandle = sh;
             myPictureBox = pb;
+            framesPictureBox = (int)myWaveForm.FrameResolution;
         }
+
 
         public void startDrawing()
         {
@@ -37,7 +40,6 @@ namespace PP_m18
 
 
             while (Bass.BASS_ChannelGetPosition(myStreamHandle, BASSMode.BASS_POS_BYTES) < Bass.BASS_ChannelGetLength(myStreamHandle)
-                   && curFrame <= endFrame
                    && Bass.BASS_ChannelIsActive(myStreamHandle) == BASSActive.BASS_ACTIVE_PLAYING
                    )
             {
@@ -52,22 +54,19 @@ namespace PP_m18
         {
 
             double curSecond = Bass.BASS_ChannelBytes2Seconds(myStreamHandle, Bass.BASS_ChannelGetPosition(myStreamHandle, BASSMode.BASS_POS_BYTES));
-            curFrame = (int)(Math.Floor(curSecond * (myWaveForm.FrameResolution)));
-            
-            double secondoffset = myWaveForm.FrameResolution;
-            double secondLeft = Bass.BASS_ChannelSeconds2Bytes(myStreamHandle, curSecond - secondoffset/2);
-            double secondRight = Bass.BASS_ChannelSeconds2Bytes(myStreamHandle, curSecond + secondoffset/2);
-
-            int frameLeft = (int)(Math.Floor(secondLeft / (myWaveForm.FrameResolution)));
-            int frameRight = (int)(Math.Floor(secondRight / (myWaveForm.FrameResolution)));
-
-            if (frameRight > endFrame)
+            curFrame = myWaveForm.Position2Frames(Bass.BASS_ChannelGetPosition(myStreamHandle));
+            //MessageBox.Show(curSecond + " " + curFrame);
+            /*
+            double secondOffset = myWaveForm.FrameResolution*5;
+            double secondLeft = curSecond - secondOffset;
+            double secondRight = curSecond + secondOffset;*/
+            int framesOffset = 200;
+            if (curFrame > framesOffset)
             {
-                startFrame = frameLeft;
-                endFrame = endFrame + frameRight;
+                endFrame = curFrame;
             }
-            else endFrame = curFrame;
-            //endFrame = (int)(Math.Floor(Bass.BASS_ChannelBytes2Seconds(myStreamHandle, Bass.BASS_ChannelGetLength(myStreamHandle)) / myWaveForm.FrameResolution));
+            else endFrame = framesOffset;
+            startFrame = endFrame-framesOffset;
 
         }
 
