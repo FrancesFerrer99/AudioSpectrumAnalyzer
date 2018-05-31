@@ -127,5 +127,10 @@ namespace PP_m18
         {
             if (player != null) player.clear();
         }
+
+        private void pictureBoxWave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

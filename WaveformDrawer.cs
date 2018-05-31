@@ -12,6 +12,7 @@ namespace PP_m18
 {
     class WaveformDrawer
     {
+        private const int framesOffset = 200;
         private int startFrame = -1;
         private int curFrame =-1;
         private int endFrame = 200;
@@ -60,13 +61,17 @@ namespace PP_m18
             double secondOffset = myWaveForm.FrameResolution*5;
             double secondLeft = curSecond - secondOffset;
             double secondRight = curSecond + secondOffset;*/
-            int framesOffset = 200;
-            if (curFrame > framesOffset)
-            {
-                endFrame = curFrame;
-            }
-            else endFrame = framesOffset;
-            startFrame = endFrame-framesOffset;
+
+
+//            startFrame = curFrame - framesOffset / 2;
+            endFrame = curFrame+framesOffset;
+            startFrame = curFrame;
+            //if (curFrame > framesOffset)
+            //{
+            //    endFrame = curFrame;
+            //}
+            //else endFrame = framesOffset;
+            //startFrame = endFrame-framesOffset;
 
         }
 

@@ -81,11 +81,12 @@
             // 
             // pictureBoxWave
             // 
-            this.pictureBoxWave.Location = new System.Drawing.Point(13, 75);
+            this.pictureBoxWave.Location = new System.Drawing.Point(83, 75);
             this.pictureBoxWave.Name = "pictureBoxWave";
-            this.pictureBoxWave.Size = new System.Drawing.Size(307, 325);
+            this.pictureBoxWave.Size = new System.Drawing.Size(150, 325);
             this.pictureBoxWave.TabIndex = 4;
             this.pictureBoxWave.TabStop = false;
+            this.pictureBoxWave.Click += new System.EventHandler(this.pictureBoxWave_Click);
             // 
             // PlayFileForm
             // 
