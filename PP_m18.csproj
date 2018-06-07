@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Bass.Net.dll</HintPath>
     </Reference>
+    <Reference Include="Libs">
+      <HintPath>..\..\Maturiamo\Libs\bin\Debug\Libs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MusicFileManager.cs" />
+    <Compile Include="Notes\Note.cs" />
+    <Compile Include="Notes\Notes.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayFileForm.cs">
       <SubType>Form</SubType>

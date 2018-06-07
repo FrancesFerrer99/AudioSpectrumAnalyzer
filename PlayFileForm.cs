@@ -13,6 +13,7 @@ using Un4seen.Bass.Misc;
 using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Libs.WaveLib;
 
 namespace PP_m18
 {
@@ -30,6 +31,8 @@ namespace PP_m18
 
         private void buttonOpen_Click(object sender, EventArgs e)
         {
+            Notes n = Notes.Instance;
+            MessageBox.Show(n.noteFromFrequency(410).NameIt);
             try
             {
                 MFM = new MusicFileManager();

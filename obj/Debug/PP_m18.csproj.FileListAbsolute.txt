@@ -11,3 +11,5 @@ C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.cs
 C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.csproj.CopyComplete
 C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.exe
 C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\obj\Debug\PP_m18.pdb
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\Libs.dll
+C:\Users\webva\Documents\GitHub\AudioSpectrumAnalyzer\PP_m18\bin\Debug\Libs.pdb
